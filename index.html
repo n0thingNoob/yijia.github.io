@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yijia Shi | William & Mary</title>
+  <meta name="description" content="Academic homepage of Yijia Shi, Ph.D. student in Computer Science at William & Mary." />
+
+  <style>
+    :root {
+      --bg: #f7f9fc;
+      --surface: #ffffff;
+      --surface-soft: #f1f7fc;
+      --text: #1f2937;
+      --muted: #64748b;
+      --line: #dbe7f1;
+      --accent: #0f6fae;
+      --accent-dark: #075985;
+      --accent-soft: #dff0fb;
+      --shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+      --max-width: 1160px;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f172a;
+      --surface: #111827;
+      --surface-soft: #1e293b;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --line: #334155;
+      --accent: #38bdf8;
+      --accent-dark: #7dd3fc;
+      --accent-soft: rgba(56, 189, 248, 0.14);
+      --shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      html[data-theme="system"] {
+        --bg: #0f172a;
+        --surface: #111827;
+        --surface-soft: #1e293b;
+        --text: #e5e7eb;
+        --muted: #94a3b8;
+        --line: #334155;
+        --accent: #38bdf8;
+        --accent-dark: #7dd3fc;
+        --accent-soft: rgba(56, 189, 248, 0.14);
+        --shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 0 0, rgba(15, 111, 174, 0.14), transparent 31rem),
+        linear-gradient(180deg, var(--surface-soft) 0%, var(--bg) 34%, var(--bg) 100%);
+      line-height: 1.62;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--accent-dark);
+      text-decoration: underline;
+    }
+
+    .container {
+      width: min(var(--max-width), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid var(--line);
+      background: color-mix(in srgb, var(--surface) 90%, transparent);
+      backdrop-filter: blur(16px);
+    }
+
+    .topbar {
+      min-height: 66px;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text);
+      font-weight: 760;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+    }
+
+    .brand:hover {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent), #0284c7);
+      color: #ffffff;
+      font-size: 0.86rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 26px;
+      font-size: 0.94rem;
+      white-space: nowrap;
+    }
+
+    .nav a {
+      color: var(--muted);
+      font-weight: 560;
+    }
+
+    .nav a:hover {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .header-actions {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .theme-switcher {
+      display: inline-flex;
+      gap: 4px;
+      padding: 4px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface-soft);
+    }
+
+    .theme-switcher button {
+      border: 0;
+      border-radius: 999px;
+      padding: 5px 9px;
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      font-size: 0.76rem;
+      cursor: pointer;
+    }
+
+    .theme-switcher button.active {
+      color: #ffffff;
+      background: var(--accent);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 310px minmax(0, 1fr);
+      gap: 34px;
+      padding: 40px 0 70px;
+      align-items: start;
+    }
+
+    aside {
+      position: sticky;
+      top: 90px;
+    }
+
+    .profile-card,
+    .content-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .profile-card {
+      padding: 26px;
+      text-align: center;
+    }
+
+    .photo {
+      width: 154px;
+      height: 154px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid var(--surface-soft);
+      background:
+        radial-gradient(circle at 34% 24%, rgba(255, 255, 255, 0.58), transparent 23%),
+        linear-gradient(135deg, var(--accent), #0284c7);
+      display: grid;
+      place-items: center;
+      color: #ffffff;
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: -0.08em;
+    }
+
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
+    }
+
+    .profile-card h1 {
+      margin: 0;
+      font-size: 1.85rem;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+    }
+
+    .title {
+      margin: 14px 0 0;
+      color: var(--text);
+      font-weight: 650;
+    }
+
+    .affiliation {
+      margin: 4px 0 0;
+      color: var(--muted);
+    }
+
+    .contact-list {
+      margin-top: 22px;
+      display: grid;
+      gap: 11px;
+      text-align: left;
+      font-size: 0.94rem;
+    }
+
+    .contact-item {
+      display: grid;
+      grid-template-columns: 24px minmax(0, 1fr);
+      gap: 10px;
+      align-items: start;
+      color: var(--muted);
+    }
+
+    .icon {
+      color: var(--accent);
+      text-align: center;
+      font-weight: 800;
+    }
+
+    main {
+      display: grid;
+      gap: 22px;
+    }
+
+    .intro {
+      padding: 32px 36px;
+    }
+
+    .intro h2 {
+      margin: 0 0 16px;
+      max-width: 850px;
+      font-size: clamp(1.8rem, 4vw, 3.2rem);
+      line-height: 1.08;
+      letter-spacing: -0.06em;
+    }
+
+    .intro p {
+      margin: 0 0 15px;
+      max-width: 860px;
+      font-size: 1.03rem;
+    }
+
+    .intro p:last-child {
+      margin-bottom: 0;
+    }
+
+    .content-card {
+      padding: 30px 34px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 22px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: 1.42rem;
+      letter-spacing: -0.035em;
+    }
+
+    .section-title span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .topics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .topic {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface-soft);
+    }
+
+    .topic h3 {
+      margin: 0 0 8px;
+      font-size: 1.02rem;
+    }
+
+    .topic p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .entry {
+      display: grid;
+      grid-template-columns: 170px minmax(0, 1fr);
+      gap: 24px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .entry:first-of-type {
+      padding-top: 0;
+    }
+
+    .entry:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .date {
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 680;
+    }
+
+    .entry h3 {
+      margin: 0 0 4px;
+      font-size: 1.08rem;
+      line-height: 1.35;
+    }
+
+    .meta {
+      margin: 0 0 8px;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .entry ul {
+      margin: 9px 0 0;
+      padding-left: 19px;
+    }
+
+    .entry li {
+      margin: 5px 0;
+    }
+
+    .publication {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface-soft);
+    }
+
+    .publication p {
+      margin: 0;
+    }
+
+    footer {
+      color: var(--muted);
+      font-size: 0.88rem;
+      text-align: center;
+      padding-top: 12px;
+    }
+
+    @media (max-width: 980px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      aside {
+        position: static;
+      }
+
+      .profile-card {
+        text-align: left;
+        display: grid;
+        grid-template-columns: 154px minmax(0, 1fr);
+        gap: 22px;
+        align-items: center;
+      }
+
+      .photo {
+        margin: 0;
+      }
+
+      .contact-list {
+        grid-column: 1 / -1;
+      }
+
+      .topics {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .topbar {
+        grid-template-columns: 1fr auto;
+        row-gap: 10px;
+        padding: 10px 0;
+      }
+
+      .brand {
+        grid-column: 1;
+        grid-row: 1;
+      }
+
+      .header-actions {
+        grid-column: 2;
+        grid-row: 1;
+      }
+
+      .nav {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        display: flex;
+        justify-content: flex-start;
+        gap: 18px;
+        overflow-x: auto;
+        padding: 2px 0 4px;
+        scrollbar-width: none;
+      }
+
+      .nav::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .layout {
+        padding-top: 22px;
+      }
+
+      .profile-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .photo {
+        margin: 0 auto;
+      }
+
+      .contact-list {
+        text-align: left;
+      }
+
+      .entry {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .content-card,
+      .intro {
+        padding: 24px;
+      }
+
+      .section-title {
+        display: block;
+      }
+
+      .section-title span {
+        display: block;
+        margin-top: 4px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container topbar">
+      <a class="brand" href="#">
+        <span class="brand-mark">YS</span>
+        <span>Yijia Shi</span>
+      </a>
+
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#education">Education</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#publications">Publications</a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="theme-switcher" aria-label="Theme switcher">
+          <button type="button" data-theme-choice="light">Light</button>
+          <button type="button" data-theme-choice="dark">Dark</button>
+          <button type="button" data-theme-choice="system" class="active">System</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container layout">
+    <aside>
+      <section class="profile-card" aria-label="Profile">
+        <div class="photo" aria-label="Profile photo placeholder">
+          <img src="profile.jpg" alt="Yijia Shi" />
+          YS
+        </div>
+
+        <div>
+          <h1>Yijia Shi</h1>
+          <p class="title">Ph.D. Student</p>
+          <p class="affiliation">Computer Science<br />William & Mary</p>
+        </div>
+
+        <div class="contact-list">
+          <div class="contact-item">
+            <span class="icon">⌂</span>
+            <span>Williamsburg, VA, USA</span>
+          </div>
+          <div class="contact-item">
+            <span class="icon">@</span>
+            <a href="mailto:yshi16@wm.edu">yshi16@wm.edu</a>
+          </div>
+          <div class="contact-item">
+            <span class="icon">☎</span>
+            <a href="tel:+19482651850">(948) 265-1850</a>
+          </div>
+          <div class="contact-item">
+            <span class="icon">⌁</span>
+            <span>
+              <a href="#" aria-label="CV">CV</a> ·
+              <a href="#" aria-label="GitHub">GitHub</a> ·
+              <a href="#" aria-label="Google Scholar">Google Scholar</a> ·
+              <a href="#" aria-label="LinkedIn">LinkedIn</a>
+            </span>
+          </div>
+        </div>
+      </section>
+    </aside>
+
+    <main>
+      <section id="about" class="content-card intro">
+        <h2>Computer architecture, spatial accelerators, and hardware/software systems.</h2>
+        <p>
+          I am a Ph.D. student in Computer Science at William & Mary. My research interests center on
+          computer architecture, spatial/data-flow accelerators, hardware/software co-design, and
+          performance evaluation for emerging accelerator systems.
+        </p>
+        <p>
+          Before joining William & Mary, I received my M.S. in Electrical and Computer Engineering
+          from Georgia Tech and my B.S. in Computer Engineering from Virginia Tech. I also worked as
+          a DFT engineer, where I contributed to FPGA SoC testing infrastructure, scan-chain insertion,
+          ATPG optimization, and simulation flows for pre-silicon and post-silicon validation.
+        </p>
+      </section>
+
+      <section id="research" class="content-card">
+        <div class="section-title">
+          <h2>Research Interests</h2>
+          <span>Current directions</span>
+        </div>
+
+        <div class="topics">
+          <article class="topic">
+            <h3>Spatial/Data-flow Accelerators</h3>
+            <p>
+              Execution models and architectural support for CGRAs, systolic arrays, and other spatial computing systems.
+            </p>
+          </article>
+
+          <article class="topic">
+            <h3>Simulation & Evaluation</h3>
+            <p>
+              Cycle-level simulation, validation methodology, and design-space exploration for accelerator architectures.
+            </p>
+          </article>
+
+          <article class="topic">
+            <h3>Compiler–Architecture Interface</h3>
+            <p>
+              Mapping artifacts and intermediate representations that connect compiler decisions with backend execution behavior.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="education" class="content-card">
+        <div class="section-title">
+          <h2>Education</h2>
+          <span>Degrees</span>
+        </div>
+
+        <div class="entry">
+          <div class="date">Current</div>
+          <div>
+            <h3>Ph.D. in Computer Science</h3>
+            <p class="meta">William & Mary · GPA: 4.0/4.0</p>
+            <p>
+              Research focus: computer architecture, spatial accelerator systems, and hardware/software co-design.
+            </p>
+          </div>
+        </div>
+
+        <div class="entry">
+          <div class="date">May 2023</div>
+          <div>
+            <h3>M.S. in Electrical and Computer Engineering</h3>
+            <p class="meta">Georgia Institute of Technology · Atlanta, GA · GPA: 3.55/4.0</p>
+          </div>
+        </div>
+
+        <div class="entry">
+          <div class="date">May 2021</div>
+          <div>
+            <h3>B.S. in Computer Engineering</h3>
+            <p class="meta">Virginia Tech · Blacksburg, VA · GPA: 3.36/4.0</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience" class="content-card">
+        <div class="section-title">
+          <h2>Experience</h2>
+          <span>Professional work</span>
+        </div>
+
+        <div class="entry">
+          <div class="date">Jul 2023 – Apr 2024</div>
+          <div>
+            <h3>DFT Engineer</h3>
+            <p class="meta">GWX Technology</p>
+            <ul>
+              <li>Designed and implemented DFT strategies for digital circuits, including SCAN, MBIST, JTAG, and IP-level tests.</li>
+              <li>Developed and verified pre-simulation and post-simulation flows for DFT patterns and test infrastructure.</li>
+              <li>Collaborated on ATPG optimization and supported ATE debugging during silicon test preparation.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="content-card">
+        <div class="section-title">
+          <h2>Selected Projects</h2>
+          <span>Systems and hardware work</span>
+        </div>
+
+        <div class="entry">
+          <div class="date">Sep 2023 – Apr 2024</div>
+          <div>
+            <h3>High-Performance FPGA SoC Testing System</h3>
+            <p class="meta">GWX Inc. · Shenzhen, Guangdong, China</p>
+            <ul>
+              <li>Contributed to the testing infrastructure for a high-performance FPGA SoC.</li>
+              <li>Performed scan-chain insertion for selected design blocks using Tessent DFT Flow and Synopsys DFT Flow on Linux.</li>
+              <li>Applied SSN techniques in Tessent DFT Flow to improve the overall DFT design.</li>
+              <li>Improved stuck-fault ATPG coverage from 98.56% to 99.43% in pre-simulation.</li>
+              <li>Built simulation environments covering BSCAN, MBIST, and ATPG across pre-simulation and post-simulation stages.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="entry">
+          <div class="date">Jan 2020 – Apr 2020</div>
+          <div>
+            <h3>Hokster 8-bit Processor</h3>
+            <p class="meta">Virginia Tech</p>
+            <ul>
+              <li>Designed a Harvard-architecture 8-bit softcore processor with a reduced instruction set.</li>
+              <li>Developed assembly and Python-based test applications to validate processor behavior.</li>
+              <li>Refactored the testbench infrastructure and reduced testbench code size by approximately 20%.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="publications" class="content-card">
+        <div class="section-title">
+          <h2>Publications</h2>
+          <span>Selected publication</span>
+        </div>
+
+        <div class="publication">
+          <p>
+            B. Rezvani, T. Conroy, L. Beckwith, M. Bozzay, T. Laffoon, D. McFeeters,
+            <strong>Y. Shi</strong>, M. Vu, and W. Diehl.
+            “Efficient Simultaneous Deployment of Multiple Lightweight Authenticated Ciphers.”
+            <em>Cryptology ePrint Archive</em>, Paper 2020/609, 2020.
+            <a href="https://eprint.iacr.org/2020/609" target="_blank" rel="noopener noreferrer">Link</a>
+          </p>
+        </div>
+      </section>
+
+      <footer>
+        © <span id="year"></span> Yijia Shi.
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    const root = document.documentElement;
+    const buttons = document.querySelectorAll("[data-theme-choice]");
+
+    function setTheme(theme) {
+      root.setAttribute("data-theme", theme);
+      localStorage.setItem("theme", theme);
+      buttons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.themeChoice === theme);
+      });
+    }
+
+    const savedTheme = localStorage.getItem("theme") || "system";
+    setTheme(savedTheme);
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => setTheme(button.dataset.themeChoice));
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const profileImage = document.querySelector(".photo img");
+    if (profileImage) {
+      profileImage.addEventListener("load", () => {
+        profileImage.style.display = "block";
+      });
+    }
+  </script>
+</body>
+</html>
